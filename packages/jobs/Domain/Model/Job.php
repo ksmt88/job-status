@@ -41,4 +41,22 @@ class Job
     {
         return $this->status;
     }
+
+    /**
+     * この求人に応募できるかを判定
+     *
+     * @return bool
+     */
+    public function canApply(): bool
+    {
+        // 公開期間内かどうかなど
+        //...
+
+        // 公開中かどうかなど判定
+        if (!$this->getStatus()->isActive()) {
+            return false;
+        }
+
+        return true;
+    }
 }

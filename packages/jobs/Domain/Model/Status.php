@@ -33,4 +33,18 @@ class Status extends IntValueObject
     {
         return self::STATUSES[$this->getValue()];
     }
+
+    /**
+     * ステータスが一時停止の場合は非公開扱いになる仕様を表現
+     *
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        if (in_array($this->getStatus()->getValue(), [Status::CLOSE, Status::SUSPEND])) {
+            return false;
+        }
+
+        return true;
+    }
 }
