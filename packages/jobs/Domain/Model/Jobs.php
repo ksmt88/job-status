@@ -16,35 +16,11 @@ class Jobs
         $this->jobs = $jobs;
     }
 
-    public function countCloseJobs(): int
+    public function countJobs(Status $status): int
     {
         $count = 0;
         foreach ($this->jobs as $job) {
-            if ($job->getStatus()->equals(new Status(Status::CLOSE))) {
-                $count++;
-            }
-        }
-
-        return $count;
-    }
-
-    public function countOpenJobs(): int
-    {
-        $count = 0;
-        foreach ($this->jobs as $job) {
-            if ($job->getStatus()->equals(new Status(Status::OPEN))) {
-                $count++;
-            }
-        }
-
-        return $count;
-    }
-
-    public function countSuspendJobs(): int
-    {
-        $count = 0;
-        foreach ($this->jobs as $job) {
-            if ($job->getStatus()->equals(new Status(Status::SUSPEND))) {
+            if ($job->getStatus()->equals($status)) {
                 $count++;
             }
         }

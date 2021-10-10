@@ -58,4 +58,14 @@ class JobRepository implements \Job\Domain\Repository\JobRepository
             ]
         );
     }
+
+    public function findLatestJobs(int $n): Jobs
+    {
+        // TODO: Implement findLatestJobs() method.
+    }
+
+    public function findFavoriteJobs(int $n): Jobs
+    {
+        // TODO: Implement findFavoriteJobs() method.
+    }
 }

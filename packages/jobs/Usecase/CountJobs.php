@@ -4,6 +4,7 @@ namespace Job\Usecase;
 
 use Illuminate\Support\Facades\Log;
 use Job\Domain\Model\ParentId;
+use Job\Domain\Model\Status;
 use Job\Domain\Repository\JobRepository;
 
 class CountJobs
@@ -25,9 +26,9 @@ class CountJobs
             $jobs = $this->jobRepository->findByParentId(new ParentId($parentId));
 
             return new Count(
-                $jobs->countCloseJobs(),
-                $jobs->countOpenJobs(),
-                $jobs->countSuspendJobs(),
+                $jobs->countJobs(new Status(Status::CLOSE)),
+                $jobs->countJobs(new Status(Status::OPEN)),
+                $jobs->countJobs(new Status(Status::SUSPEND)),
             );
 
         } catch (\Exception $e) {
